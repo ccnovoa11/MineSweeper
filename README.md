@@ -26,7 +26,7 @@ This project consists of a minesweeper's game that can be played in the console.
 
 ## Instalation
 Download the .ZIP file.
-Para el funcionamiento del proyecto se necesita tener previamente instalado java.
+You must have installed java previously.
 
 ## Deployment
 Decompress the .ZIP file. Run the console on the decompressed folder. Now, execute the following commands in the console:
