@@ -70,6 +70,9 @@ public class Minesweeper {
 								System.out.println("b) Personalizado");
 								System.out.println("c) Volver");
 								String lineaPartida = br.readLine();
+								if (!((lineaPartida.equals("a")) || (lineaPartida.equals("b")) || (lineaPartida.equals("c")))){
+									System.err.println("Selecciona una opción válida.");
+								}
 								do {
 									if (lineaPartida.equals("a")) {
 										do {
@@ -79,6 +82,9 @@ public class Minesweeper {
 											System.out.println("c) Experto: Tablero de 16x30 y 99 minas.");
 											System.out.println("d) Volver.");
 											String opcion = br.readLine();
+											if (!((opcion.equals("a")) || (opcion.equals("b")) || (opcion.equals("c")) || (opcion.equals("d")))){
+												System.err.println("Selecciona una opción válida.");
+											}
 											if (opcion.equals("a")) {
 												Board juego = new Board(9, 9, 10);
 											}
@@ -181,6 +187,9 @@ public class Minesweeper {
 								System.out.println("b) Custom");
 								System.out.println("c) Return to menu");
 								String lineaPartida = br.readLine();
+								if (!((lineaPartida.equals("a")) || (lineaPartida.equals("b")) || (lineaPartida.equals("c")))){
+									System.err.println("Select a valid option.");
+								}
 								do {
 									if (lineaPartida.equals("a")) {
 										do {
@@ -190,6 +199,9 @@ public class Minesweeper {
 											System.out.println("c) Expert: 16x30 Board with 99 mines.");
 											System.out.println("d) Return to menu.");
 											String opcion = br.readLine();
+											if (!((opcion.equals("a")) || (opcion.equals("b")) || (opcion.equals("c")) || (opcion.equals("d")))){
+												System.err.println("Select a valid option.");
+											}
 											if (opcion.equals("a")) {
 												Board juego = new Board(9, 9, 10);
 											}
@@ -265,8 +277,8 @@ public class Minesweeper {
 					}
 				}
 				if (!(idioma.equals("a") || idioma.equals("b"))) {
-					System.err.println("Error. Por favor, selecciona el idioma.");
-					System.err.println("Please, select your language.");
+					System.err.println("Error. Selecciona el idioma.");
+					System.err.println("Error. Select your language.");
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException ex) {

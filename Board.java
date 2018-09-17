@@ -83,7 +83,7 @@ public class Board {
 	 * Número de minas en tablero.
 	 */
 	private int numMinas;
-	
+
 	/**
 	 * Banderas correctas
 	 */
@@ -98,6 +98,11 @@ public class Board {
 	 * Número de movimientos/turnos.
 	 */
 	private int movimientos = 0;
+	
+	/**
+	 * Son coordenadas váidas?.
+	 */
+	private boolean esValido=true;
 
 
 	/**
@@ -125,7 +130,7 @@ public class Board {
 	 * Crear tablero del juego.
 	 * @param nMinas del tablero. 
 	 */
-	
+
 	public void crearTablero(int nMinas) {
 		movimientos = 0;
 		List<Casilla> minas = new ArrayList<Casilla>();
@@ -146,13 +151,13 @@ public class Board {
 	 * @throws NumberFormatException the number format exception.
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	
+
 	public void solicitarCoordenadas() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if (Minesweeper.espanol) {
 			System.out.println("¿Qué desea hacer?");
 			System.out.println("a) Destapar");
-			System.out.println("b) Poner bandera");
+			System.out.println("b) Poner/Quitar bandera");
 			if (movimientos>=1) {
 				System.out.println("c) Salir del juego");
 			}
@@ -161,35 +166,61 @@ public class Board {
 			if (accion.equals("a")) {
 				System.out.println("Introduzca las coordenadas (si desea destapar la casilla en la posición 3x4 introduzca '3 4')");
 				String[] parts = br.readLine().split(" ");
-				int coordenadaY = Integer.parseInt(parts[0]);
-				int coordenadaX = Integer.parseInt(parts[1]);
-				descubrir(coordenadaY, coordenadaX);
-				movimientos++;
+
+				if ((parts.length<=1) || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
+					System.err.println("Introduzca coordenadas válidas");
+					esValido=false;
+				}
+				else {
+					int coordenadaY = Integer.parseInt(parts[0]);
+					int coordenadaX = Integer.parseInt(parts[1]);
+					descubrir(coordenadaY, coordenadaX);
+					movimientos++;
+				}
 			}
 			if (accion.equals("b")) {
 				System.out.println("Introduzca las coordenadas (si desea poner una bandera en la casilla en la posición 3x4 introduzca '3 4')");
 				String[] parts = br.readLine().split(" ");
-				int coordenadaY = Integer.parseInt(parts[0]);
-				int coordenadaX = Integer.parseInt(parts[1]);
-				marcar(coordenadaY, coordenadaX);
-				movimientos++;
-			}
-			mostrarTablero();
-			verSiDerrota();
-			marcadasMina=0;
-			marcadasError=0;
-			comprobarVictoria();
-			calcularAdyacentes();
+
+				if (parts.length<1 || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
+					System.err.println("Introduzca coordenadas válidas");
+					esValido=false;
+				}
+				else {
+					int coordenadaY = Integer.parseInt(parts[0]);
+					int coordenadaX = Integer.parseInt(parts[1]);
+					marcar(coordenadaY, coordenadaX);
+					movimientos++;			
+				}
+
+			}			
 
 			if (accion.equals("c")) {
 				victoria=true;
 			}
 
+			if (!((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))){
+				System.err.println("Selecciona una opción válida.");
+			}
+			
+			if(((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))&& esValido==true)
+			{
+				verSiDerrota();
+				marcadasMina=0;
+				marcadasError=0;
+				comprobarVictoria();
+				calcularAdyacentes();
+			}
+			
+			if (victoria==false)
+				mostrarTablero();
+			
+
 		}
 		if (Minesweeper.english) {
 			System.out.println("What do you want to do?");
 			System.out.println("a) Open box");
-			System.out.println("b) Put a flag");
+			System.out.println("b) Put/Remove a flag");
 			if (movimientos>=1) {
 				System.out.println("c) Quit");
 			}
@@ -198,30 +229,50 @@ public class Board {
 			if (accion.equals("a")) {
 				System.out.println("Input coordinates (if you want to open the box in position 3x4 input '3 4')");
 				String[] parts = br.readLine().split(" ");
-				int coordenadaY = Integer.parseInt(parts[0]);
-				int coordenadaX = Integer.parseInt(parts[1]);
-				descubrir(coordenadaY, coordenadaX);
-				movimientos++;
+				if (parts.length<=1 || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
+					System.err.println("Input valid coordinates");
+					esValido=false;
+				}
+				else {
+					int coordenadaY = Integer.parseInt(parts[0]);
+					int coordenadaX = Integer.parseInt(parts[1]);
+					descubrir(coordenadaY, coordenadaX);
+					movimientos++;
+				}
 			}
 			if (accion.equals("b")) {
 				System.out.println("Input coordinates (if you want to put a flag at the box in position 3x4 input '3 4')");
 				String[] parts = br.readLine().split(" ");
-				int coordenadaY = Integer.parseInt(parts[0]);
-				int coordenadaX = Integer.parseInt(parts[1]);
-				marcar(coordenadaY, coordenadaX);
-				movimientos++;
+				if (parts.length<=1 || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
+					System.err.println("Input valid coordinates");
+					esValido=false;
+				}
+				else {
+					int coordenadaY = Integer.parseInt(parts[0]);
+					int coordenadaX = Integer.parseInt(parts[1]);
+					marcar(coordenadaY, coordenadaX);
+					movimientos++;
+				}
 			}
 			if (accion.equals("c")) {
 				victoria=true;
 			}
-			mostrarTablero();
-			verSiDerrota();
-			marcadasMina=0;
-			marcadasError=0;
-			comprobarVictoria();
-			calcularAdyacentes();
 
-
+			if (!((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))){
+				System.err.println("Select a valid option.");
+			}
+			
+			if(((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))&& esValido==true)
+			{
+				verSiDerrota();
+				marcadasMina=0;
+				marcadasError=0;
+				comprobarVictoria();
+				calcularAdyacentes();
+			}	
+			
+			if (victoria==false)
+				mostrarTablero();
 		}
 	}
 
@@ -260,7 +311,7 @@ public class Board {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Marca la casilla en la posición.
 	 * @param x coordenada.
