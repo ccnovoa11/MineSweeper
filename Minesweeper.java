@@ -103,19 +103,19 @@ public class Minesweeper {
 									}
 									if (lineaPartida.equals("b")) {
 										// Solicitar alto y ancho.
-										System.out.println("Introduzca las coordenadas (p.ej. si desea un tablero de alto 15 y ancho 20 introduzca '15 20')");
+										System.out.println("Introduzca las coordenadas y el número de minas (p.ej. si desea un tablero de 15x20 con 10 minas introduzca '15 20 10')");
 										String[] parts = br.readLine().split(" ");
+										System.out.println();
 
-										if (parts.length<= 1 || parts.length>2) {
+										if (parts.length<= 2) {
 											System.err.println("Ha ocurrido un error en la lectura de sus coordenadas\n");
 											break;
 										}
 
 										alto = Integer.parseInt(parts[0]);
 										ancho = Integer.parseInt(parts[1]);
+										numeroMinas = Integer.parseInt(parts[2]);
 
-										System.out.println("Introduzca el número de minas");
-										numeroMinas = (Integer.parseInt(br.readLine()));
 										if (numeroMinas >= alto*ancho) {
 											System.err.println("El número de minas debe ser menor al número de casillas\n");
 											break;
@@ -219,19 +219,17 @@ public class Minesweeper {
 										} while (menuTradicional==true);
 									}
 									if (lineaPartida.equals("b")) {
-										System.out.println("Input the coordinates (e.g. if you want a 15x20 board, input '15 20')");
+										System.out.println("Input the coordinates and mines' numbe (e.g. if you want a 15x20 board with 10 mines, input '15 20 10')");
 										String[] parts = br.readLine().split(" ");
 
-										if (parts.length<= 1 || parts.length>2) {
+										if (parts.length<= 2) {
 											System.err.println("An error occurred. Please try again.\n");
 											break;
 										}
 
 										alto = Integer.parseInt(parts[0]);
 										ancho = Integer.parseInt(parts[1]);
-
-										System.out.println("Input mines' number");
-										numeroMinas = (Integer.parseInt(br.readLine()));
+										numeroMinas = Integer.parseInt(parts[2]);
 										if (numeroMinas >= alto*ancho) {
 											System.err.println("Mines' number must be lower than boxes \n");
 											break;
