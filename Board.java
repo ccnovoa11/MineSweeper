@@ -154,7 +154,7 @@ public class Board {
 	public void solicitarCoordenadas() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if (Minesweeper.espanol) {
-			System.out.println("¿Qué desea hacer?");
+			System.out.println("¿Que desea hacer?");
 			System.out.println("a) Destapar");
 			System.out.println("b) Poner/Quitar bandera");
 			if (movimientos>=1) {
