@@ -100,7 +100,7 @@ public class Board {
 	private int movimientos = 0;
 	
 	/**
-	 * Son coordenadas váidas?.
+	 * Son coordenadas vaidas?.
 	 */
 	private boolean esValido=true;
 
@@ -147,7 +147,7 @@ public class Board {
 	}
 
 	/**
-	 * Solicitar coordenadas de acuerdo a la acción dada.
+	 * Solicitar coordenadas de acuerdo a la accion dada.
 	 * @throws NumberFormatException the number format exception.
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
@@ -155,7 +155,7 @@ public class Board {
 	public void solicitarCoordenadas() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if (Minesweeper.espanol) {
-			System.out.println("¿Qué desea hacer?");
+			System.out.println("¿Que desea hacer?");
 			System.out.println("a) Destapar");
 			System.out.println("b) Poner/Quitar bandera");
 			if (movimientos>=1) {
@@ -164,11 +164,11 @@ public class Board {
 			String accion = br.readLine();
 
 			if (accion.equals("a")) {
-				System.out.println("Introduzca las coordenadas (si desea destapar la casilla en la posición 3x4 introduzca '3 4')");
+				System.out.println("Introduzca las coordenadas (si desea destapar la casilla en la posicion 3x4 introduzca '3 4')");
 				String[] parts = br.readLine().split(" ");
 
 				if ((parts.length<=1) || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
-					System.err.println("Introduzca coordenadas válidas");
+					System.err.println("Introduzca coordenadas validas");
 					esValido=false;
 				}
 				else {
@@ -179,11 +179,11 @@ public class Board {
 				}
 			}
 			if (accion.equals("b")) {
-				System.out.println("Introduzca las coordenadas (si desea poner una bandera en la casilla en la posición 3x4 introduzca '3 4')");
+				System.out.println("Introduzca las coordenadas (si desea poner una bandera en la casilla en la posicion 3x4 introduzca '3 4')");
 				String[] parts = br.readLine().split(" ");
 
 				if (parts.length<1 || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
-					System.err.println("Introduzca coordenadas válidas");
+					System.err.println("Introduzca coordenadas validas");
 					esValido=false;
 				}
 				else {
@@ -200,7 +200,7 @@ public class Board {
 			}
 
 			if (!((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))){
-				System.err.println("Selecciona una opción válida.");
+				System.err.println("Selecciona una opcion valida.");
 			}
 			
 			if(((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))&& esValido==true)
@@ -277,7 +277,7 @@ public class Board {
 	}
 
 	/**
-	 * Destapa la casilla en la posición.
+	 * Destapa la casilla en la posicion.
 	 * @param x coordenada.
 	 * @param y coordenada.
 	 * @return true/false.
@@ -313,7 +313,7 @@ public class Board {
 	}
 
 	/**
-	 * Marca la casilla en la posición.
+	 * Marca la casilla en la posicion.
 	 * @param x coordenada.
 	 * @param y coordenada.
 	 */
@@ -321,7 +321,7 @@ public class Board {
 	public void marcar(int x, int y) {
 		if (Minesweeper.espanol) {
 			if (!dentroCasilla(x, y)) {
-				System.err.println("Introduzca coordenadas válidas.");
+				System.err.println("Introduzca coordenadas validas.");
 			}
 
 			c = casilla[x][y];
@@ -330,7 +330,7 @@ public class Board {
 			} else if (c.destapo==false && c.marca==false) {
 				c.marca= true;
 			} else {
-				System.err.println("La casilla ya está destapada");
+				System.err.println("La casilla ya esta destapada");
 			}
 		}
 		if (Minesweeper.english) {
@@ -350,10 +350,10 @@ public class Board {
 	}
 
 	/**
-	 * Se usa para saber si las coordenadas están dentro del tablero.
+	 * Se usa para saber si las coordenadas estan dentro del tablero.
 	 * @param x coordenada
 	 * @param y coordenada
-	 * @return true si está. False si no.
+	 * @return true si esta. False si no.
 	 */
 	public boolean dentroCasilla(int x, int y) {
 		if (x > 0 && y > 0 && x <= alto && y <= ancho) {
@@ -364,7 +364,7 @@ public class Board {
 	}
 
 	/**
-	 * Se comprueba si el jugador perdió y se muestra donde estaban las minas.
+	 * Se comprueba si el jugador perdio y se muestra donde estaban las minas.
 	 */
 	public void verSiDerrota() {
 		if (c.mina && c.destapo) {
@@ -451,10 +451,10 @@ public class Board {
 	}
 
 	/**
-	 * Se comprueba si ya ganó el jugador.
+	 * Se comprueba si ya gano el jugador.
 	 * Puede ganar de dos maneras:
-	 * 1. Destapó todas las casillas sin mina.
-	 * 2. Marcó todas las casillas con mina (y únicamente esas).
+	 * 1. Destapo todas las casillas sin mina.
+	 * 2. Marco todas las casillas con mina (y únicamente esas).
 	 */
 	public void comprobarVictoria() {
 		int aux = 0;
@@ -516,7 +516,7 @@ public class Board {
 			for (int j = 1; j <= ancho; j++) {
 				Casilla f = casilla[i][j];
 				if (f.marca)
-					System.out.print("¶  ");
+					System.out.print("P  ");
 				if ((f.oculto && f.mina && !f.destapo && !f.marca)||(f.oculto && !f.mina && !f.destapo && !f.marca)) {
 					System.out.print(".  ");
 				} 

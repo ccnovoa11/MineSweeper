@@ -10,12 +10,12 @@ import java.io.InputStreamReader;
 public class Minesweeper {
 
 	/**
-	 * Constante para determinar si el juego se inicializa en español.
+	 * Constante para determinar si el juego se inicializa en espanhol.
 	 */
 	public static boolean espanol = false;
 
 	/**
-	 * Constante para determinar si el juego se inicializa en inglés.
+	 * Constante para determinar si el juego se inicializa en ingles.
 	 */
 	public static boolean english = false;
 
@@ -36,15 +36,15 @@ public class Minesweeper {
 		int ancho = 0;
 		int numeroMinas = 0;
 
-		// Menú para selección de idioma.
+		// Menú para seleccion de idioma.
 		while (corriendo3) {
 			System.out.println("Seleccione el idioma/Select yout language");
-			System.out.println("a) Español");
+			System.out.println("a) Espanhol");
 			System.out.println("b) English");
 			String idioma = br.readLine();
 
 			do {
-				// Menu en español
+				// Menu en espanhol
 				if (idioma.equals("a")) {
 					espanol = true;
 					while (corriendo) {
@@ -56,7 +56,7 @@ public class Minesweeper {
 								"|______/   \\______/  |_______/     \\______/__/     \\__\\ |__|  |__| |__| |__| \\__| /__/     \\__\\ |_______/    \n" + 
 								"                                                                                                             ");
 						corriendo2 = true;
-						System.out.println("Escoja una opción (a ó b)");
+						System.out.println("Escoja una opcion (a o b)");
 						System.out.println("a) Empezar partida");
 						System.out.println("b) Salir");
 
@@ -65,25 +65,25 @@ public class Minesweeper {
 						do {
 							// Modos de juego (tradicional o personalizado)
 							if (linea.equals("a")) {
-								System.out.println("Escoja el estilo de juego (a ó b, c para volver)");
+								System.out.println("Escoja el estilo de juego (a o b, c para volver)");
 								System.out.println("a) Tradicional");
 								System.out.println("b) Personalizado");
 								System.out.println("c) Volver");
 								String lineaPartida = br.readLine();
 								if (!((lineaPartida.equals("a")) || (lineaPartida.equals("b")) || (lineaPartida.equals("c")))){
-									System.err.println("Selecciona una opción válida.");
+									System.err.println("Selecciona una opcion valida.");
 								}
 								do {
 									if (lineaPartida.equals("a")) {
 										do {
-											System.out.println("Escoja una de las siguientes opciones (a, b, c ó d)");
+											System.out.println("Escoja una de las siguientes opciones (a, b, c o d)");
 											System.out.println("a) Principiante: Tablero de 9x9 con 10 minas.");
 											System.out.println("b) Intermedio: Tablero de 16x16 y 40 minas.");
 											System.out.println("c) Experto: Tablero de 16x30 y 99 minas.");
 											System.out.println("d) Volver.");
 											String opcion = br.readLine();
 											if (!((opcion.equals("a")) || (opcion.equals("b")) || (opcion.equals("c")) || (opcion.equals("d")))){
-												System.err.println("Selecciona una opción válida.");
+												System.err.println("Selecciona una opcion valida.");
 											}
 											if (opcion.equals("a")) {
 												Board juego = new Board(9, 9, 10);
@@ -151,7 +151,7 @@ public class Minesweeper {
 
 							// 
 							if (!(linea.equals("a") || linea.equals("b"))) {
-								System.err.println("Error. Por favor, introduce a ó b");
+								System.err.println("Error. Por favor, introduce a o b");
 								try {
 									Thread.sleep(2000);
 								} catch (InterruptedException ex) {
@@ -193,7 +193,7 @@ public class Minesweeper {
 								do {
 									if (lineaPartida.equals("a")) {
 										do {
-											System.out.println("Choose between this options (a, b, c ó d)");
+											System.out.println("Choose between this options (a, b, c o d)");
 											System.out.println("a) Beginner: 9x9 Board with 10 mines.");
 											System.out.println("b) Intermediate: 16x16 Board with 40 mines.");
 											System.out.println("c) Expert: 16x30 Board with 99 mines.");
