@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * Casilla del juego
  */
@@ -98,7 +97,7 @@ public class Board {
 	 * Número de movimientos/turnos.
 	 */
 	private int movimientos = 0;
-	
+
 	/**
 	 * Son coordenadas vaidas?.
 	 */
@@ -155,7 +154,7 @@ public class Board {
 	public void solicitarCoordenadas() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if (Minesweeper.espanol) {
-			System.out.println("¿Que desea hacer?");
+			System.out.println("¿Qué desea hacer?");
 			System.out.println("a) Destapar");
 			System.out.println("b) Poner/Quitar bandera");
 			if (movimientos>=1) {
@@ -164,11 +163,11 @@ public class Board {
 			String accion = br.readLine();
 
 			if (accion.equals("a")) {
-				System.out.println("Introduzca las coordenadas (si desea destapar la casilla en la posicion 3x4 introduzca '3 4')");
+				System.out.println("Introduzca las coordenadas (si desea destapar la casilla en la posición 3x4 introduzca '3 4')");
 				String[] parts = br.readLine().split(" ");
 
 				if ((parts.length<=1) || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
-					System.err.println("Introduzca coordenadas validas");
+					System.err.println("Introduzca coordenadas válidas");
 					esValido=false;
 				}
 				else {
@@ -179,11 +178,11 @@ public class Board {
 				}
 			}
 			if (accion.equals("b")) {
-				System.out.println("Introduzca las coordenadas (si desea poner una bandera en la casilla en la posicion 3x4 introduzca '3 4')");
+				System.out.println("Introduzca las coordenadas (si desea poner una bandera en la casilla en la posición 3x4 introduzca '3 4')");
 				String[] parts = br.readLine().split(" ");
 
 				if (parts.length<1 || Integer.parseInt(parts[0])>alto || Integer.parseInt(parts[1])>ancho) {
-					System.err.println("Introduzca coordenadas validas");
+					System.err.println("Introduzca coordenadas válidas");
 					esValido=false;
 				}
 				else {
@@ -200,22 +199,20 @@ public class Board {
 			}
 
 			if (!((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))){
-				System.err.println("Selecciona una opcion valida.");
+				System.err.println("Selecciona una opción válida.");
 			}
-			
+
 			if(((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))&& esValido==true)
 			{
 				verSiDerrota();
 				marcadasMina=0;
-				marcadasError=0;
-				comprobarVictoria();
+				marcadasError=0;				
 				calcularAdyacentes();
+				comprobarVictoria();
 			}
-			
-			if (victoria==false)
-				mostrarTablero();
-			
 
+			if (victoria == false)
+				mostrarTablero();		
 		}
 		if (Minesweeper.english) {
 			System.out.println("What do you want to do?");
@@ -261,17 +258,17 @@ public class Board {
 			if (!((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))){
 				System.err.println("Select a valid option.");
 			}
-			
+
 			if(((accion.equals("a")) || (accion.equals("b")) || (accion.equals("c")))&& esValido==true)
 			{
 				verSiDerrota();
 				marcadasMina=0;
-				marcadasError=0;
-				comprobarVictoria();
+				marcadasError=0;				
 				calcularAdyacentes();
-			}	
-			
-			if (victoria==false)
+				comprobarVictoria();
+			}
+
+			if (victoria == false)
 				mostrarTablero();
 		}
 	}
@@ -393,7 +390,10 @@ public class Board {
 					}
 					System.out.println();
 				}
-				System.out.print("    ");
+				if (alto>9)
+			    	System.out.print("    ");
+				else
+					System.out.print("   ");
 				for (int j = 1; j <= ancho; j++) {
 					if (Integer.toString(j).length()>1) {
 						System.out.print(j + " ");
@@ -474,13 +474,31 @@ public class Board {
 		}
 		if (Minesweeper.espanol) {
 			if (aux == (alto * ancho) - numMinas || (marcadasMina==numMinas && marcadasError==0)) {
-				System.out.println("\nHas ganado en " + movimientos+ " movimientos. Enhorabuena\n");
+				mostrarTablero();
+				System.out.println(" _____                       _       _ \n" + 
+						"|  __ \\                     | |     | |\n" + 
+						"| |  \\/ __ _ _ __   __ _ ___| |_ ___| |\n" + 
+						"| | __ / _` | '_ \\ / _` / __| __/ _ \\ |\n" + 
+						"| |_\\ \\ (_| | | | | (_| \\__ \\ ||  __/_|\n" + 
+						" \\____/\\__,_|_| |_|\\__,_|___/\\__\\___(_)\n" + 
+						"                                       \n" + 
+						"                                       ");
+				System.out.println("\nHas ganado en " + movimientos+ " movimientos.\n");
 				victoria = true;
 			}
 		}
 		if (Minesweeper.english) {
 			if (aux == (alto * ancho) - numMinas || (marcadasMina==numMinas && marcadasError==0)) {
-				System.out.println("\nYou won in " + movimientos+ " movements. Congrats\n");
+				mostrarTablero();
+				System.out.println("__   __                                _ \n" + 
+						"\\ \\ / /                               | |\n" + 
+						" \\ V /___  _   _  __      _____  _ __ | |\n" + 
+						"  \\ // _ \\| | | | \\ \\ /\\ / / _ \\| '_ \\| |\n" + 
+						"  | | (_) | |_| |  \\ V  V / (_) | | | |_|\n" + 
+						"  \\_/\\___/ \\__,_|   \\_/\\_/ \\___/|_| |_(_)\n" + 
+						"                                         \n" + 
+						"                                         ");
+				System.out.println("\nYou won in " + movimientos+ " movements.\n");
 				victoria = true;
 			}
 		}
