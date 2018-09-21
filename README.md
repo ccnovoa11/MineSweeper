@@ -53,7 +53,7 @@ If you have problems with the second command, it could be because of the JVM and
 For example, if the file's directory is C:\Users\Minesweeper, the command must be:
 * ```java -classpath C:\Users\Minesweeper Minesweeper```
 
-## Instrucciones del juego
+## Detailed Instructions
 Once you run the program, you have to select your preferred language (Spanish or English). To do that, you only have to press the respective key of the option and press enter (e.g. If you want to play in English, press b and enter). 
 
 Once you select the language, the program going to show you a menu where you can choose between start a game or quit the program.
