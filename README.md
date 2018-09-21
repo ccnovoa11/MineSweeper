@@ -48,7 +48,7 @@ Decompress the .ZIP file. Run the console on the decompressed folder. Now, execu
 * ```java Minesweeper```
 
 If you have problems with the second command, it could be because of the JVM and you must to add the file's directory to the command. 
-* ```java -classpath <Ruta de archivo> Minesweeper```
+* ```java -classpath <file directory> Minesweeper```
 
 For example, if the file's directory is C:\Users\Minesweeper, the command must be:
 * ```java -classpath C:\Users\Minesweeper Minesweeper```
